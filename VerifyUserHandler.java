@@ -19,7 +19,7 @@ public class VerifyUserHandler {
           stmt.setString(1, uname);
           ResultSet rs=stmt.executeQuery();
           System.out.println("sdsdsds");
-          if(rs!=null)  {
+          if(rs.next())  {
           	rs.close();
           	con.close();
           	stmt.close();

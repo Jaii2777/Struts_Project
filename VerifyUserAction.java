@@ -37,8 +37,10 @@ public class VerifyUserAction extends Action  {
             			return mapping.findForward("verified");
             		}
 
-            		else if(status.equals("failed"))
+            		else if(status.equals("failed")) {
+						request.setAttribute("error","Invalid user");
             			return mapping.findForward("failed");
+					}
 
             	}
             
