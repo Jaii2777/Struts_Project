@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+    <!DOCTYPE struts-config PUBLIC
+              "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+               "struts-config_1_3.dtd">
+
+
+ <struts-config>
+    <!-- <form-beans>
+       <form-bean name="viewForm" 
+        type="com.form.ViewForm"/>
+    </form-beans> -->
+
+
+      <form-beans>
+       <form-bean name="enrollForm" 
+        type="com.form.EnrollForm"/>
+      </form-beans> 
+
+      <form-beans>
+       <form-bean name="changePasswordForm" 
+        type="com.form.ChangePasswordForm"/>
+      </form-beans>  
+ 
+      <form-beans>
+        <form-bean name="verifyUserForm"
+        type="com.form.VerifyUserForm" /> 
+      </form-beans>
+      <form-beans>
+        <form-bean name="validateUserForm"
+          type="com.form.ValidateUserForm" />
+      </form-beans>
+
+       <form-beans>
+        <form-bean name="resetPasswordForm"
+          type="com.form.ResetPasswordForm" />
+      </form-beans>
+
+
+
+<!--- Reset password Action Mapping -->
+
+<action-mappings>
+    <action path="/resetPassword" 
+      name="resetPasswordForm"
+      input="resetPassword.jsp"
+      scope="request"
+      type="com.action.ResetPasswordAction">
+      <forward name="success" path="/index.jsp"/>
+    </action>
+  </action-mappings>
+<!-- Validate user with secret question -->
+  <action-mappings>
+    <action path="/validateUser" 
+      name="validateUserForm"
+      input="verifyUser.jsp"
+      scope="request"
+      type="com.action.ValidateUserAction">
+      <forward name="success" path="/resetPassword.jsp"/>
+    </action>
+  </action-mappings>
+<!-- Verify User Name -->
+  <action-mappings>
+    <action path="/verifyUser"
+      name="verifyUserForm"
+      type="com.action.VerifyUserAction"
+      scope="request"
+      input="getUserName.jsp">
+      <forward name="verified" path="/verifyUser.jsp" />
+    </action>
+  </action-mappings>
+<!-- view Action -->
+    <action-mappings>
+       <action path="/View"
+        type="com.action.ViewAction"
+        input="index.jsp">
+        <forward name="success" path="/view.jsp"/>
+       </action>
+    </action-mappings>
+    
+<!-- Enroll action -->
+    <action-mappings>
+       <action path="/enroll"
+        name="enrollForm"
+        type="com.action.EnrollAction"
+        scope="request"
+        input="view.jsp">
+        <forward name="success" path="/enroll.jsp"/>
+       <forward name="ok" path="/index.html"/>
+       </action>
+    </action-mappings>
+
+<!-- change password -->
+     <action-mappings>
+       <action path="/changePassword"
+        name="changePasswordForm"
+        type="com.action.ChangePasswordAction"
+        scope="request"
+        input="view.jsp">
+        <forward name="success" path="/changePassword.jsp"/>
+       <forward name="changed" path="/view.jsp"/>
+       </action>
+    </action-mappings> 
+
+
+
+    <!-- get UserName -->
+    
+
+      <action-mappings>
+         <action path="/getUserName" forward="/getUserName.jsp"/>
+         <action path="/redirect" forward="/verifyUser.jsp"/>
+		 <action path="/logout" forward="/logout.jsp" />
+      </action-mappings>
+
+<!--       <action-mappings>
+         <action path="/redirect" forward="/verifyUser.jsp"/>
+      </action-mappings> -->
+     
+
+</struts-config> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <struts-config>
+    <form-beans>
+       <form-bean name="helloWorldForm" 
+        type="com.form.HelloWorldForm"/>
+    </form-beans>
+
+    <action-mappings>
+       <action path="/AlienInfo"
+        type="com.action.HelloWorldAction"
+        name="helloWorldForm"
+		input="index.jsp">
+        <forward name="success" path="/success.jsp"/>
+       </action>
+    </action-mappings>
+
+</struts-config> -->
